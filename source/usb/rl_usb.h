@@ -66,6 +66,18 @@ extern int32_t  USBD_CDC_ACM_PortSetLineCoding(CDC_LINE_CODING *line_coding);
 extern int32_t  USBD_CDC_ACM_PortGetLineCoding(CDC_LINE_CODING *line_coding);
 extern int32_t  USBD_CDC_ACM_PortSetControlLineState(uint16_t ctrl_bmp);
 extern int32_t  USBD_CDC_ACM_DataSend(const uint8_t *buf, int32_t len);
+
+#ifdef ENABLE_2ND_COM_PORT
+extern int32_t USBD_CDC_2_ACM_DataSend(uint8_t *buf, int32_t len);
+extern int32_t USBD_CDC_2_ACM_DataFree(void);
+extern int32_t  USBD_CDC_2_ACM_DataRead(uint8_t *buf, int32_t len);
+#endif 
+#ifdef ENABLE_3RD_COM_PORT
+extern int32_t USBD_CDC_3_ACM_DataSend(uint8_t *buf, int32_t len);
+extern int32_t USBD_CDC_3_ACM_DataFree(void);
+extern int32_t  USBD_CDC_3_ACM_DataRead(uint8_t *buf, int32_t len);
+#endif 
+
 extern int32_t  USBD_CDC_ACM_DataFree(void);
 extern int32_t  USBD_CDC_ACM_PutChar(const uint8_t  ch);
 extern int32_t  USBD_CDC_ACM_DataRead(uint8_t *buf, int32_t len);

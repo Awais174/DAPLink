@@ -88,6 +88,31 @@ extern const U16 usbd_cdc_acm_sendbuf_sz;
 extern const U16 usbd_cdc_acm_receivebuf_sz;
 extern const U16 usbd_cdc_acm_maxpacketsize[2];
 extern const U16 usbd_cdc_acm_maxpacketsize1[2];
+
+#if ENABLE_2ND_COM_PORT
+extern const U8 usbd_cdc_2_acm_cif_num;
+extern const U8 usbd_cdc_2_acm_dif_num;
+extern const U8 usbd_cdc_2_acm_ep_intin;
+extern const U8 usbd_cdc_2_acm_ep_bulkin;
+extern const U8 usbd_cdc_2_acm_ep_bulkout;
+extern const U16 usbd_cdc_2_acm_sendbuf_sz;
+extern const U16 usbd_cdc_2_acm_receivebuf_sz;
+extern U8 USBD_CDC_2_ACM_SendBuf[];
+extern U8 USBD_CDC_2_ACM_ReceiveBuf[];
+#endif
+
+#if ENABLE_3RD_COM_PORT
+extern const U8 usbd_cdc_3_acm_cif_num;
+extern const U8 usbd_cdc_3_acm_dif_num;
+extern const U8 usbd_cdc_3_acm_ep_intin;
+extern const U8 usbd_cdc_3_acm_ep_bulkin;
+extern const U8 usbd_cdc_3_acm_ep_bulkout;
+extern const U16 usbd_cdc_3_acm_sendbuf_sz;
+extern const U16 usbd_cdc_3_acm_receivebuf_sz;
+extern U8 USBD_CDC_3_ACM_SendBuf[];
+extern U8 USBD_CDC_3_ACM_ReceiveBuf[];
+#endif 
+
 extern U8 USBD_CDC_ACM_SendBuf[];
 extern U8 USBD_CDC_ACM_ReceiveBuf[];
 extern U8 USBD_CDC_ACM_NotifyBuf[10];

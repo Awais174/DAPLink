@@ -126,6 +126,32 @@ const U16 usbd_cdc_acm_maxpacketsize1[2] = {USBD_CDC_ACM_WMAXPACKETSIZE1, USBD_C
 U8 USBD_CDC_ACM_SendBuf[USBD_CDC_ACM_SENDBUF_SIZE];
 U8 USBD_CDC_ACM_ReceiveBuf[USBD_CDC_ACM_RECEIVEBUF_SIZE];
 U8 USBD_CDC_ACM_NotifyBuf[10];
+
+#if ENABLE_2ND_COM_PORT
+const U8 usbd_cdc_2_acm_cif_num = USBD_CDC_2_ACM_CIF_NUM;
+const U8 usbd_cdc_2_acm_dif_num = USBD_CDC_2_ACM_DIF_NUM;
+const U8 usbd_cdc_2_acm_ep_intin = USBD_CDC_2_ACM_EP_INTIN;
+const U8 usbd_cdc_2_acm_ep_bulkin = USBD_CDC_2_ACM_EP_BULKIN;
+const U8 usbd_cdc_2_acm_ep_bulkout = USBD_CDC_2_ACM_EP_BULKOUT;
+const U16 usbd_cdc_2_acm_sendbuf_sz = USBD_CDC_2_ACM_SENDBUF_SIZE;
+const U16 usbd_cdc_2_acm_receivebuf_sz = USBD_CDC_2_ACM_RECEIVEBUF_SIZE;
+U8 USBD_CDC_2_ACM_SendBuf[USBD_CDC_2_ACM_SENDBUF_SIZE];
+U8 USBD_CDC_2_ACM_ReceiveBuf[USBD_CDC_2_ACM_RECEIVEBUF_SIZE];
+#endif
+
+#if ENABLE_3RD_COM_PORT  
+const U8 usbd_cdc_3_acm_cif_num = USBD_CDC_3_ACM_CIF_NUM;
+const U8 usbd_cdc_3_acm_dif_num = USBD_CDC_3_ACM_DIF_NUM;
+const U8 usbd_cdc_3_acm_ep_intin = USBD_CDC_3_ACM_EP_INTIN;
+const U8 usbd_cdc_3_acm_ep_bulkin = USBD_CDC_3_ACM_EP_BULKIN;
+const U8 usbd_cdc_3_acm_ep_bulkout = USBD_CDC_3_ACM_EP_BULKOUT;
+const U16 usbd_cdc_3_acm_sendbuf_sz = USBD_CDC_3_ACM_SENDBUF_SIZE;
+const U16 usbd_cdc_3_acm_receivebuf_sz = USBD_CDC_3_ACM_RECEIVEBUF_SIZE;
+U8 USBD_CDC_3_ACM_SendBuf[USBD_CDC_3_ACM_SENDBUF_SIZE];
+U8 USBD_CDC_3_ACM_ReceiveBuf[USBD_CDC_3_ACM_RECEIVEBUF_SIZE];
+#endif 
+
+
 #endif
 
 /*------------------------------------------------------------------------------
@@ -647,6 +673,268 @@ BOOL USBD_EndPoint0_Out_ADC_ReqToEP(void)
 }
 #endif  /* (USBD_MSC_ENABLE) */
 
+#if   (USBD_CDC_ACM_ENABLE)
+#if ENABLE_2ND_COM_PORT   
+#if    (USBD_CDC_2_ACM_EP_INTIN == 1)
+#define USBD_EndPoint1                   USBD_CDC_2_ACM_EP_INTIN_Event
+#elif  (USBD_CDC_2_ACM_EP_INTIN == 2)
+#define USBD_EndPoint2                   USBD_CDC_2_ACM_EP_INTIN_Event
+#elif  (USBD_CDC_2_ACM_EP_INTIN == 3)
+#define USBD_EndPoint3                   USBD_CDC_2_ACM_EP_INTIN_Event
+#elif  (USBD_CDC_2_ACM_EP_INTIN == 4)
+#define USBD_EndPoint4                   USBD_CDC_2_ACM_EP_INTIN_Event
+#elif  (USBD_CDC_2_ACM_EP_INTIN == 5)
+#define USBD_EndPoint5                   USBD_CDC_2_ACM_EP_INTIN_Event
+#elif  (USBD_CDC_2_ACM_EP_INTIN == 6)
+#define USBD_EndPoint6                   USBD_CDC_2_ACM_EP_INTIN_Event
+#elif  (USBD_CDC_2_ACM_EP_INTIN == 7)
+#define USBD_EndPoint7                   USBD_CDC_2_ACM_EP_INTIN_Event
+#elif  (USBD_CDC_2_ACM_EP_INTIN == 8)
+#define USBD_EndPoint8                   USBD_CDC_2_ACM_EP_INTIN_Event
+#elif  (USBD_CDC_2_ACM_EP_INTIN == 9)
+#define USBD_EndPoint9                   USBD_CDC_2_ACM_EP_INTIN_Event
+#elif  (USBD_CDC_2_ACM_EP_INTIN == 10)
+#define USBD_EndPoint10                  USBD_CDC_2_ACM_EP_INTIN_Event
+#elif  (USBD_CDC_2_ACM_EP_INTIN == 11)
+#define USBD_EndPoint11                  USBD_CDC_2_ACM_EP_INTIN_Event
+#elif  (USBD_CDC_2_ACM_EP_INTIN == 12)
+#define USBD_EndPoint12                  USBD_CDC_2_ACM_EP_INTIN_Event
+#elif  (USBD_CDC_2_ACM_EP_INTIN == 13)
+#define USBD_EndPoint13                  USBD_CDC_2_ACM_EP_INTIN_Event
+#elif  (USBD_CDC_2_ACM_EP_INTIN == 14)
+#define USBD_EndPoint14                  USBD_CDC_2_ACM_EP_INTIN_Event
+#elif  (USBD_CDC_2_ACM_EP_INTIN == 15)
+#define USBD_EndPoint15                  USBD_CDC_2_ACM_EP_INTIN_Event
+#endif
+#if    (USBD_CDC_2_ACM_EP_BULKIN != USBD_CDC_2_ACM_EP_BULKOUT)
+#if    (USBD_CDC_2_ACM_EP_BULKIN == 1)
+#define USBD_EndPoint1                 USBD_CDC_2_ACM_EP_BULKIN_Event
+#elif  (USBD_CDC_2_ACM_EP_BULKIN == 2)
+#define USBD_EndPoint2                 USBD_CDC_2_ACM_EP_BULKIN_Event
+#elif  (USBD_CDC_2_ACM_EP_BULKIN == 3)
+#define USBD_EndPoint3                 USBD_CDC_2_ACM_EP_BULKIN_Event
+#elif  (USBD_CDC_2_ACM_EP_BULKIN == 4)
+#define USBD_EndPoint4                 USBD_CDC_2_ACM_EP_BULKIN_Event
+#elif  (USBD_CDC_2_ACM_EP_BULKIN == 5)
+#define USBD_EndPoint5                 USBD_CDC_2_ACM_EP_BULKIN_Event
+#elif  (USBD_CDC_2_ACM_EP_BULKIN == 6)
+#define USBD_EndPoint6                 USBD_CDC_2_ACM_EP_BULKIN_Event
+#elif  (USBD_CDC_2_ACM_EP_BULKIN == 7)
+#define USBD_EndPoint7                 USBD_CDC_2_ACM_EP_BULKIN_Event
+#elif  (USBD_CDC_2_ACM_EP_BULKIN == 8)
+#define USBD_EndPoint8                 USBD_CDC_2_ACM_EP_BULKIN_Event
+#elif  (USBD_CDC_2_ACM_EP_BULKIN == 9)
+#define USBD_EndPoint9                 USBD_CDC_2_ACM_EP_BULKIN_Event
+#elif  (USBD_CDC_2_ACM_EP_BULKIN == 10)
+#define USBD_EndPoint10                USBD_CDC_2_ACM_EP_BULKIN_Event
+#elif  (USBD_CDC_2_ACM_EP_BULKIN == 11)
+#define USBD_EndPoint11                USBD_CDC_2_ACM_EP_BULKIN_Event
+#elif  (USBD_CDC_2_ACM_EP_BULKIN == 12)
+#define USBD_EndPoint12                USBD_CDC_2_ACM_EP_BULKIN_Event
+#elif  (USBD_CDC_2_ACM_EP_BULKIN == 13)
+#define USBD_EndPoint13                USBD_CDC_2_ACM_EP_BULKIN_Event
+#elif  (USBD_CDC_2_ACM_EP_BULKIN == 14)
+#define USBD_EndPoint14                USBD_CDC_2_ACM_EP_BULKIN_Event
+#elif  (USBD_CDC_2_ACM_EP_BULKIN == 15)
+#define USBD_EndPoint15                USBD_CDC_2_ACM_EP_BULKIN_Event
+#endif
+#if    (USBD_CDC_2_ACM_EP_BULKOUT == 1)
+#define USBD_EndPoint1                 USBD_CDC_2_ACM_EP_BULKOUT_Event
+#elif  (USBD_CDC_2_ACM_EP_BULKOUT == 2)
+#define USBD_EndPoint2                 USBD_CDC_2_ACM_EP_BULKOUT_Event
+#elif  (USBD_CDC_2_ACM_EP_BULKOUT == 3)
+#define USBD_EndPoint3                 USBD_CDC_2_ACM_EP_BULKOUT_Event
+#elif  (USBD_CDC_2_ACM_EP_BULKOUT == 4)
+#define USBD_EndPoint4                 USBD_CDC_2_ACM_EP_BULKOUT_Event
+#elif  (USBD_CDC_2_ACM_EP_BULKOUT == 5)
+#define USBD_EndPoint5                 USBD_CDC_2_ACM_EP_BULKOUT_Event
+#elif  (USBD_CDC_2_ACM_EP_BULKOUT == 6)
+#define USBD_EndPoint6                 USBD_CDC_2_ACM_EP_BULKOUT_Event
+#elif  (USBD_CDC_2_ACM_EP_BULKOUT == 7)
+#define USBD_EndPoint7                 USBD_CDC_2_ACM_EP_BULKOUT_Event
+#elif  (USBD_CDC_2_ACM_EP_BULKOUT == 8)
+#define USBD_EndPoint8                 USBD_CDC_2_ACM_EP_BULKOUT_Event
+#elif  (USBD_CDC_2_ACM_EP_BULKOUT == 9)
+#define USBD_EndPoint9                 USBD_CDC_2_ACM_EP_BULKOUT_Event
+#elif  (USBD_CDC_2_ACM_EP_BULKOUT == 10)
+#define USBD_EndPoint10                USBD_CDC_2_ACM_EP_BULKOUT_Event
+#elif  (USBD_CDC_2_ACM_EP_BULKOUT == 11)
+#define USBD_EndPoint11                USBD_CDC_2_ACM_EP_BULKOUT_Event
+#elif  (USBD_CDC_2_ACM_EP_BULKOUT == 12)
+#define USBD_EndPoint12                USBD_CDC_2_ACM_EP_BULKOUT_Event
+#elif  (USBD_CDC_2_ACM_EP_BULKOUT == 13)
+#define USBD_EndPoint13                USBD_CDC_2_ACM_EP_BULKOUT_Event
+#elif  (USBD_CDC_2_ACM_EP_BULKOUT == 14)
+#define USBD_EndPoint14                USBD_CDC_2_ACM_EP_BULKOUT_Event
+#elif  (USBD_CDC_2_ACM_EP_BULKOUT == 15)
+#define USBD_EndPoint15                USBD_CDC_2_ACM_EP_BULKOUT_Event
+#endif
+#else
+#if    (USBD_CDC_2_ACM_EP_BULKIN == 1)
+#define USBD_EndPoint1                 USBD_CDC_2_ACM_EP_BULK_Event
+#elif  (USBD_CDC_2_ACM_EP_BULKIN == 2)
+#define USBD_EndPoint2                 USBD_CDC_2_ACM_EP_BULK_Event
+#elif  (USBD_CDC_2_ACM_EP_BULKIN == 3)
+#define USBD_EndPoint3                 USBD_CDC_2_ACM_EP_BULK_Event
+#elif  (USBD_CDC_2_ACM_EP_BULKIN == 4)
+#define USBD_EndPoint4                 USBD_CDC_2_ACM_EP_BULK_Event
+#elif  (USBD_CDC_2_ACM_EP_BULKIN == 5)
+#define USBD_EndPoint5                 USBD_CDC_2_ACM_EP_BULK_Event
+#elif  (USBD_CDC_2_ACM_EP_BULKIN == 6)
+#define USBD_EndPoint6                 USBD_CDC_2_ACM_EP_BULK_Event
+#elif  (USBD_CDC_2_ACM_EP_BULKIN == 7)
+#define USBD_EndPoint7                 USBD_CDC_2_ACM_EP_BULK_Event
+#elif  (USBD_CDC_2_ACM_EP_BULKIN == 8)
+#define USBD_EndPoint8                 USBD_CDC_2_ACM_EP_BULK_Event
+#elif  (USBD_CDC_2_ACM_EP_BULKIN == 9)
+#define USBD_EndPoint9                 USBD_CDC_2_ACM_EP_BULK_Event
+#elif  (USBD_CDC_2_ACM_EP_BULKIN == 10)
+#define USBD_EndPoint10                USBD_CDC_2_ACM_EP_BULK_Event
+#elif  (USBD_CDC_2_ACM_EP_BULKIN == 11)
+#define USBD_EndPoint11                USBD_CDC_2_ACM_EP_BULK_Event
+#elif  (USBD_CDC_2_ACM_EP_BULKIN == 12)
+#define USBD_EndPoint12                USBD_CDC_2_ACM_EP_BULK_Event
+#elif  (USBD_CDC_2_ACM_EP_BULKIN == 13)
+#define USBD_EndPoint13                USBD_CDC_2_ACM_EP_BULK_Event
+#elif  (USBD_CDC_2_ACM_EP_BULKIN == 14)
+#define USBD_EndPoint14                USBD_CDC_2_ACM_EP_BULK_Event
+#elif  (USBD_CDC_2_ACM_EP_BULKIN == 15)
+#define USBD_EndPoint15                USBD_CDC_2_ACM_EP_BULK_Event
+#endif  
+#endif
+#endif 
+
+#if ENABLE_3RD_COM_PORT 
+#if    (USBD_CDC_3_ACM_EP_INTIN == 1)
+#define USBD_EndPoint1                   USBD_CDC_3_ACM_EP_INTIN_Event
+#elif  (USBD_CDC_3_ACM_EP_INTIN == 2)
+#define USBD_EndPoint2                   USBD_CDC_3_ACM_EP_INTIN_Event
+#elif  (USBD_CDC_3_ACM_EP_INTIN == 3)
+#define USBD_EndPoint3                   USBD_CDC_3_ACM_EP_INTIN_Event
+#elif  (USBD_CDC_3_ACM_EP_INTIN == 4)
+#define USBD_EndPoint4                   USBD_CDC_3_ACM_EP_INTIN_Event
+#elif  (USBD_CDC_3_ACM_EP_INTIN == 5)
+#define USBD_EndPoint5                   USBD_CDC_3_ACM_EP_INTIN_Event
+#elif  (USBD_CDC_3_ACM_EP_INTIN == 6)
+#define USBD_EndPoint6                   USBD_CDC_3_ACM_EP_INTIN_Event
+#elif  (USBD_CDC_3_ACM_EP_INTIN == 7)
+#define USBD_EndPoint7                   USBD_CDC_3_ACM_EP_INTIN_Event
+#elif  (USBD_CDC_3_ACM_EP_INTIN == 8)
+#define USBD_EndPoint8                   USBD_CDC_3_ACM_EP_INTIN_Event
+#elif  (USBD_CDC_3_ACM_EP_INTIN == 9)
+#define USBD_EndPoint9                   USBD_CDC_3_ACM_EP_INTIN_Event
+#elif  (USBD_CDC_3_ACM_EP_INTIN == 10)
+#define USBD_EndPoint10                  USBD_CDC_3_ACM_EP_INTIN_Event
+#elif  (USBD_CDC_3_ACM_EP_INTIN == 11)
+#define USBD_EndPoint11                  USBD_CDC_3_ACM_EP_INTIN_Event
+#elif  (USBD_CDC_3_ACM_EP_INTIN == 12)
+#define USBD_EndPoint12                  USBD_CDC_3_ACM_EP_INTIN_Event
+#elif  (USBD_CDC_3_ACM_EP_INTIN == 13)
+#define USBD_EndPoint13                  USBD_CDC_3_ACM_EP_INTIN_Event
+#elif  (USBD_CDC_3_ACM_EP_INTIN == 14)
+#define USBD_EndPoint14                  USBD_CDC_3_ACM_EP_INTIN_Event
+#elif  (USBD_CDC_3_ACM_EP_INTIN == 15)
+#define USBD_EndPoint15                  USBD_CDC_3_ACM_EP_INTIN_Event
+#endif
+#if    (USBD_CDC_3_ACM_EP_BULKIN != USBD_CDC_3_ACM_EP_BULKOUT)
+#if    (USBD_CDC_3_ACM_EP_BULKIN == 1)
+#define USBD_EndPoint1                 USBD_CDC_3_ACM_EP_BULKIN_Event
+#elif  (USBD_CDC_3_ACM_EP_BULKIN == 2)
+#define USBD_EndPoint2                 USBD_CDC_3_ACM_EP_BULKIN_Event
+#elif  (USBD_CDC_3_ACM_EP_BULKIN == 3)
+#define USBD_EndPoint3                 USBD_CDC_3_ACM_EP_BULKIN_Event
+#elif  (USBD_CDC_3_ACM_EP_BULKIN == 4)
+#define USBD_EndPoint4                 USBD_CDC_3_ACM_EP_BULKIN_Event
+#elif  (USBD_CDC_3_ACM_EP_BULKIN == 5)
+#define USBD_EndPoint5                 USBD_CDC_3_ACM_EP_BULKIN_Event
+#elif  (USBD_CDC_3_ACM_EP_BULKIN == 6)
+#define USBD_EndPoint6                 USBD_CDC_3_ACM_EP_BULKIN_Event
+#elif  (USBD_CDC_3_ACM_EP_BULKIN == 7)
+#define USBD_EndPoint7                 USBD_CDC_3_ACM_EP_BULKIN_Event
+#elif  (USBD_CDC_3_ACM_EP_BULKIN == 8)
+#define USBD_EndPoint8                 USBD_CDC_3_ACM_EP_BULKIN_Event
+#elif  (USBD_CDC_3_ACM_EP_BULKIN == 9)
+#define USBD_EndPoint9                 USBD_CDC_3_ACM_EP_BULKIN_Event
+#elif  (USBD_CDC_3_ACM_EP_BULKIN == 10)
+#define USBD_EndPoint10                USBD_CDC_3_ACM_EP_BULKIN_Event
+#elif  (USBD_CDC_3_ACM_EP_BULKIN == 11)
+#define USBD_EndPoint11                USBD_CDC_3_ACM_EP_BULKIN_Event
+#elif  (USBD_CDC_3_ACM_EP_BULKIN == 12)
+#define USBD_EndPoint12                USBD_CDC_3_ACM_EP_BULKIN_Event
+#elif  (USBD_CDC_3_ACM_EP_BULKIN == 13)
+#define USBD_EndPoint13                USBD_CDC_3_ACM_EP_BULKIN_Event
+#elif  (USBD_CDC_3_ACM_EP_BULKIN == 14)
+#define USBD_EndPoint14                USBD_CDC_3_ACM_EP_BULKIN_Event
+#elif  (USBD_CDC_3_ACM_EP_BULKIN == 15)
+#define USBD_EndPoint15                USBD_CDC_3_ACM_EP_BULKIN_Event
+#endif
+#if    (USBD_CDC_3_ACM_EP_BULKOUT == 1)
+#define USBD_EndPoint1                 USBD_CDC_3_ACM_EP_BULKOUT_Event
+#elif  (USBD_CDC_3_ACM_EP_BULKOUT == 2)
+#define USBD_EndPoint2                 USBD_CDC_3_ACM_EP_BULKOUT_Event
+#elif  (USBD_CDC_3_ACM_EP_BULKOUT == 3)
+#define USBD_EndPoint3                 USBD_CDC_3_ACM_EP_BULKOUT_Event
+#elif  (USBD_CDC_3_ACM_EP_BULKOUT == 4)
+#define USBD_EndPoint4                 USBD_CDC_3_ACM_EP_BULKOUT_Event
+#elif  (USBD_CDC_3_ACM_EP_BULKOUT == 5)
+#define USBD_EndPoint5                 USBD_CDC_3_ACM_EP_BULKOUT_Event
+#elif  (USBD_CDC_3_ACM_EP_BULKOUT == 6)
+#define USBD_EndPoint6                 USBD_CDC_3_ACM_EP_BULKOUT_Event
+#elif  (USBD_CDC_3_ACM_EP_BULKOUT == 7)
+#define USBD_EndPoint7                 USBD_CDC_3_ACM_EP_BULKOUT_Event
+#elif  (USBD_CDC_3_ACM_EP_BULKOUT == 8)
+#define USBD_EndPoint8                 USBD_CDC_3_ACM_EP_BULKOUT_Event
+#elif  (USBD_CDC_3_ACM_EP_BULKOUT == 9)
+#define USBD_EndPoint9                 USBD_CDC_3_ACM_EP_BULKOUT_Event
+#elif  (USBD_CDC_3_ACM_EP_BULKOUT == 10)
+#define USBD_EndPoint10                USBD_CDC_3_ACM_EP_BULKOUT_Event
+#elif  (USBD_CDC_3_ACM_EP_BULKOUT == 11)
+#define USBD_EndPoint11                USBD_CDC_3_ACM_EP_BULKOUT_Event
+#elif  (USBD_CDC_3_ACM_EP_BULKOUT == 12)
+#define USBD_EndPoint12                USBD_CDC_3_ACM_EP_BULKOUT_Event
+#elif  (USBD_CDC_3_ACM_EP_BULKOUT == 13)
+#define USBD_EndPoint13                USBD_CDC_3_ACM_EP_BULKOUT_Event
+#elif  (USBD_CDC_3_ACM_EP_BULKOUT == 14)
+#define USBD_EndPoint14                USBD_CDC_3_ACM_EP_BULKOUT_Event
+#elif  (USBD_CDC_3_ACM_EP_BULKOUT == 15)
+#define USBD_EndPoint15                USBD_CDC_3_ACM_EP_BULKOUT_Event
+#endif
+#else
+#if    (USBD_CDC_3_ACM_EP_BULKIN == 1)
+#define USBD_EndPoint1                 USBD_CDC_3_ACM_EP_BULK_Event
+#elif  (USBD_CDC_3_ACM_EP_BULKIN == 2)
+#define USBD_EndPoint2                 USBD_CDC_3_ACM_EP_BULK_Event
+#elif  (USBD_CDC_3_ACM_EP_BULKIN == 3)
+#define USBD_EndPoint3                 USBD_CDC_3_ACM_EP_BULK_Event
+#elif  (USBD_CDC_3_ACM_EP_BULKIN == 4)
+#define USBD_EndPoint4                 USBD_CDC_3_ACM_EP_BULK_Event
+#elif  (USBD_CDC_3_ACM_EP_BULKIN == 5)
+#define USBD_EndPoint5                 USBD_CDC_3_ACM_EP_BULK_Event
+#elif  (USBD_CDC_3_ACM_EP_BULKIN == 6)
+#define USBD_EndPoint6                 USBD_CDC_3_ACM_EP_BULK_Event
+#elif  (USBD_CDC_3_ACM_EP_BULKIN == 7)
+#define USBD_EndPoint7                 USBD_CDC_3_ACM_EP_BULK_Event
+#elif  (USBD_CDC_3_ACM_EP_BULKIN == 8)
+#define USBD_EndPoint8                 USBD_CDC_3_ACM_EP_BULK_Event
+#elif  (USBD_CDC_3_ACM_EP_BULKIN == 9)
+#define USBD_EndPoint9                 USBD_CDC_3_ACM_EP_BULK_Event
+#elif  (USBD_CDC_3_ACM_EP_BULKIN == 10)
+#define USBD_EndPoint10                USBD_CDC_3_ACM_EP_BULK_Event
+#elif  (USBD_CDC_3_ACM_EP_BULKIN == 11)
+#define USBD_EndPoint11                USBD_CDC_3_ACM_EP_BULK_Event
+#elif  (USBD_CDC_3_ACM_EP_BULKIN == 12)
+#define USBD_EndPoint12                USBD_CDC_3_ACM_EP_BULK_Event
+#elif  (USBD_CDC_3_ACM_EP_BULKIN == 13)
+#define USBD_EndPoint13                USBD_CDC_3_ACM_EP_BULK_Event
+#elif  (USBD_CDC_3_ACM_EP_BULKIN == 14)
+#define USBD_EndPoint14                USBD_CDC_3_ACM_EP_BULK_Event
+#elif  (USBD_CDC_3_ACM_EP_BULKIN == 15)
+#define USBD_EndPoint15                USBD_CDC_3_ACM_EP_BULK_Event
+#endif
+#endif 
+#endif
+#endif
+
 #if    (USBD_CDC_ACM_ENABLE)
 #ifdef __RTX
 #if    (USBD_CDC_ACM_EP_INTIN == 1)
@@ -976,6 +1264,12 @@ void USBD_SOF_Event(void)
 #endif
 #if    (USBD_CDC_ACM_ENABLE)
     USBD_CDC_ACM_SOF_Event();
+		#ifdef ENABLE_2ND_COM_PORT
+						USBD_CDC_2_ACM_SOF_Event();
+		#endif
+		#ifdef ENABLE_3RD_COM_PORT
+						USBD_CDC_3_ACM_SOF_Event();
+		#endif
 #endif
 #if    (USBD_CLS_ENABLE)
     USBD_CLS_SOF_Event();
@@ -1109,7 +1403,14 @@ __weak __task void USBD_RTX_Device(void)
             USBD_ADC_SOF_Event();
 #endif
 #if (USBD_CDC_ACM_ENABLE)
-            USBD_CDC_ACM_SOF_Event();
+            USBD_CDC_ACM_SOF_Event();			
+		#ifdef ENABLE_2ND_COM_PORT
+						USBD_CDC_2_ACM_SOF_Event();
+		#endif
+		#ifdef ENABLE_3RD_COM_PORT
+						USBD_CDC_3_ACM_SOF_Event();
+		#endif
+					
 #endif
 #if (USBD_CLS_ENABLE)
             USBD_CLS_SOF_Event();
@@ -1501,14 +1802,33 @@ void USBD_RTX_TaskInit(void)
                                            USB_INTERFACE_DESC_SIZE + USB_ENDPOINT_DESC_SIZE + USB_ENDPOINT_DESC_SIZE)
 #define USBD_HID_DESC_LEN                 (USB_INTERFACE_DESC_SIZE + USB_HID_DESC_SIZE                                                          + \
                                           (USB_ENDPOINT_DESC_SIZE*(1+(USBD_HID_EP_INTOUT != 0))))
-#define USBD_HID_DESC_OFS                 (USB_CONFIGUARTION_DESC_SIZE + USB_INTERFACE_DESC_SIZE                                                + \
-                                           USBD_MSC_ENABLE * USBD_MSC_DESC_LEN + USBD_CDC_ACM_ENABLE * USBD_CDC_ACM_DESC_LEN)
-
+#if !(ENABLE_2ND_COM_PORT || ENABLE_3RD_COM_PORT)   
 #define USBD_WTOTALLENGTH                 (USB_CONFIGUARTION_DESC_SIZE +                 \
                                            USBD_CDC_ACM_DESC_LEN * USBD_CDC_ACM_ENABLE + \
                                            USBD_HID_DESC_LEN     * USBD_HID_ENABLE     + \
                                            USBD_MSC_DESC_LEN     * USBD_MSC_ENABLE)
-
+#define USBD_HID_DESC_OFS                 (USB_CONFIGUARTION_DESC_SIZE + USB_INTERFACE_DESC_SIZE                                                + \
+                                           USBD_MSC_ENABLE * USBD_MSC_DESC_LEN + USBD_CDC_ACM_ENABLE * USBD_CDC_ACM_DESC_LEN)
+#elif (ENABLE_2ND_COM_PORT && !ENABLE_3RD_COM_PORT)  
+#define USBD_WTOTALLENGTH                 (USB_CONFIGUARTION_DESC_SIZE +                 \
+                                           USBD_CDC_ACM_DESC_LEN * USBD_CDC_ACM_ENABLE + \
+																					 USBD_CDC_ACM_DESC_LEN * USBD_CDC_ACM_ENABLE + \
+                                           USBD_HID_DESC_LEN     * USBD_HID_ENABLE     + \
+                                           USBD_MSC_DESC_LEN     * USBD_MSC_ENABLE)
+#define USBD_HID_DESC_OFS                 (USB_CONFIGUARTION_DESC_SIZE + USB_INTERFACE_DESC_SIZE                                                + \
+                                           USBD_MSC_ENABLE * USBD_MSC_DESC_LEN + USBD_CDC_ACM_ENABLE * USBD_CDC_ACM_DESC_LEN * 2)
+#elif (ENABLE_3RD_COM_PORT && ENABLE_2ND_COM_PORT)  
+#define USBD_WTOTALLENGTH                 (USB_CONFIGUARTION_DESC_SIZE +                 \
+                                           USBD_CDC_ACM_DESC_LEN * USBD_CDC_ACM_ENABLE + \
+																					 USBD_CDC_ACM_DESC_LEN * USBD_CDC_ACM_ENABLE + \
+																					 USBD_CDC_ACM_DESC_LEN * USBD_CDC_ACM_ENABLE + \
+                                           USBD_HID_DESC_LEN     * USBD_HID_ENABLE     + \
+                                           USBD_MSC_DESC_LEN     * USBD_MSC_ENABLE)
+#define USBD_HID_DESC_OFS                 (USB_CONFIGUARTION_DESC_SIZE + USB_INTERFACE_DESC_SIZE                                                + \
+                                           USBD_MSC_ENABLE * USBD_MSC_DESC_LEN + USBD_CDC_ACM_ENABLE * USBD_CDC_ACM_DESC_LEN * 3)
+#else
+#error "Wrong pre-processor macros defined for multiple COM ports"
+#endif 
 /*------------------------------------------------------------------------------
   Default HID Report Descriptor
  *----------------------------------------------------------------------------*/
@@ -2009,6 +2329,230 @@ const U8 USBD_DeviceQualifier_HS[] = { 0 };
   WBVAL(USBD_CDC_ACM_HS_WMAXPACKETSIZE1),/* wMaxPacketSize */                                               \
   USBD_CDC_ACM_HS_BINTERVAL1,           /* bInterval */
 
+#if (ENABLE_2ND_COM_PORT)
+#define CDC_2_ACM_DESC_IAD(first,num_of_ifs)  /* CDC: Interface Association Descriptor */                     \
+  USB_INTERFACE_ASSOC_DESC_SIZE,        /* bLength */                                                       \
+  USB_INTERFACE_ASSOCIATION_DESCRIPTOR_TYPE,  /* bDescriptorType */                                         \
+ (first),                               /* bFirstInterface */                                               \
+ (num_of_ifs),                          /* bInterfaceCount */                                               \
+  CDC_COMMUNICATION_INTERFACE_CLASS,    /* bFunctionClass    (Communication Class) */                       \
+  CDC_ABSTRACT_CONTROL_MODEL,           /* bFunctionSubclass (Abstract Control Model) */                    \
+  0x01,                                 /* bFunctionProtocol (V.25ter, Common AT commands) */               \
+  USBD_CDC_2_ACM_CIF_STR_NUM,             /* iFunction */                                                     \
+
+#define CDC_2_ACM_DESC_IF0                                                                                        \
+/* Interface, Alternate Setting 0, CDC Class */                                                             \
+  USB_INTERFACE_DESC_SIZE,              /* bLength */                                                       \
+  USB_INTERFACE_DESCRIPTOR_TYPE,        /* bDescriptorType */                                               \
+  USBD_CDC_2_ACM_CIF_NUM,                 /* bInterfaceNumber: Number of Interface */                         \
+  0x00,                                 /* bAlternateSetting: Alternate setting */                          \
+  0x01,                                 /* bNumEndpoints: One endpoint used */                              \
+  CDC_COMMUNICATION_INTERFACE_CLASS,    /* bInterfaceClass: Communication Interface Class */                \
+  CDC_ABSTRACT_CONTROL_MODEL,           /* bInterfaceSubClass: Abstract Control Model */                    \
+  0x01,                                 /* bInterfaceProtocol: no protocol used */                          \
+  USBD_CDC_2_ACM_CIF_STR_NUM,             /* iInterface: */                                                   \
+                                                                                                            \
+/* Header Functional Descriptor */                                                                          \
+  CDC_HEADER_SIZE,                      /* bLength: Endpoint Descriptor size */                             \
+  CDC_CS_INTERFACE,                     /* bDescriptorType: CS_INTERFACE */                                 \
+  CDC_HEADER,                           /* bDescriptorSubtype: Header Func Desc */                          \
+  WBVAL(CDC_V1_10), /* 1.10 */          /* bcdCDC */                                                        \
+/* Call Management Functional Descriptor */                                                                 \
+  CDC_CALL_MANAGEMENT_SIZE,             /* bFunctionLength */                                               \
+  CDC_CS_INTERFACE,                     /* bDescriptorType: CS_INTERFACE */                                 \
+  CDC_CALL_MANAGEMENT,                  /* bDescriptorSubtype: Call Management Func Desc */                 \
+  0x03,                                 /* bmCapabilities: device handles call management */                \
+  0x02,                                 /* bDataInterface: CDC data IF ID */                                \
+/* Abstract Control Management Functional Descriptor */                                                     \
+  CDC_ABSTRACT_CONTROL_MANAGEMENT_SIZE, /* bFunctionLength */                                               \
+  CDC_CS_INTERFACE,                     /* bDescriptorType: CS_INTERFACE */                                 \
+  CDC_ABSTRACT_CONTROL_MANAGEMENT,      /* bDescriptorSubtype: Abstract Control Management desc */          \
+  0x06,                                 /* bmCapabilities: SET_LINE_CODING, GET_LINE_CODING, SET_CONTROL_LINE_STATE supported */ \
+/* Union Functional Descriptor */                                                                           \
+  CDC_UNION_SIZE,                       /* bFunctionLength */                                               \
+  CDC_CS_INTERFACE,                     /* bDescriptorType: CS_INTERFACE */                                 \
+  CDC_UNION,                            /* bDescriptorSubtype: Union func desc */                           \
+  USBD_CDC_2_ACM_CIF_NUM,                 /* bMasterInterface: Communication class interface is master */     \
+  USBD_CDC_2_ACM_DIF_NUM,                 /* bSlaveInterface0: Data class interface is slave 0 */
+
+#define CDC_2_ACM_EP_IF0                  /* CDC Endpoints for Interface 0 for Low-speed/Full-speed */        \
+/* Endpoint, EP Interrupt IN */         /* event notification (optional) */                                 \
+  USB_ENDPOINT_DESC_SIZE,               /* bLength */                                                       \
+  USB_ENDPOINT_DESCRIPTOR_TYPE,         /* bDescriptorType */                                               \
+  USB_ENDPOINT_IN(USBD_CDC_2_ACM_EP_INTIN),/* bEndpointAddress */                                             \
+  USB_ENDPOINT_TYPE_INTERRUPT,          /* bmAttributes */                                                  \
+  WBVAL(USBD_CDC_ACM_WMAXPACKETSIZE),   /* wMaxPacketSize */                                                \
+  USBD_CDC_ACM_BINTERVAL,               /* bInterval */
+
+#define CDC_2_ACM_EP_IF0_HS               /* CDC Endpoints for Interface 0 for High-speed */                  \
+/* Endpoint, EP Interrupt IN */         /* event notification (optional) */                                 \
+  USB_ENDPOINT_DESC_SIZE,               /* bLength */                                                       \
+  USB_ENDPOINT_DESCRIPTOR_TYPE,         /* bDescriptorType */                                               \
+  USB_ENDPOINT_IN(USBD_CDC_2_ACM_EP_INTIN),/* bEndpointAddress */                                             \
+  USB_ENDPOINT_TYPE_INTERRUPT,          /* bmAttributes */                                                  \
+  WBVAL(USBD_CDC_ACM_HS_WMAXPACKETSIZE),/* wMaxPacketSize */                                                \
+  USBD_CDC_ACM_HS_BINTERVAL,            /* bInterval */
+
+#define CDC_2_ACM_DESC_IF1                                                                                        \
+/* Interface, Alternate Setting 0, Data class interface descriptor*/                                        \
+  USB_INTERFACE_DESC_SIZE,              /* bLength */                                                       \
+  USB_INTERFACE_DESCRIPTOR_TYPE,        /* bDescriptorType */                                               \
+  USBD_CDC_2_ACM_DIF_NUM,                 /* bInterfaceNumber: Number of Interface */                         \
+  0x00,                                 /* bAlternateSetting: no alternate setting */                       \
+  0x02,                                 /* bNumEndpoints: two endpoints used */                             \
+  CDC_DATA_INTERFACE_CLASS,             /* bInterfaceClass: Data Interface Class */                         \
+  0x00,                                 /* bInterfaceSubClass: no subclass available */                     \
+  0x00,                                 /* bInterfaceProtocol: no protocol used */                          \
+  USBD_CDC_2_ACM_DIF_STR_NUM,             /* iInterface */
+
+#define CDC_2_ACM_EP_IF1                  /* CDC Endpoints for Interface 1 for Low-speed/Full-speed */        \
+/* Endpoint, EP Bulk OUT */                                                                                 \
+  USB_ENDPOINT_DESC_SIZE,               /* bLength */                                                       \
+  USB_ENDPOINT_DESCRIPTOR_TYPE,         /* bDescriptorType */                                               \
+  USB_ENDPOINT_OUT(USBD_CDC_2_ACM_EP_BULKOUT),/* bEndpointAddress */                                          \
+  USB_ENDPOINT_TYPE_BULK,               /* bmAttributes */                                                  \
+  WBVAL(USBD_CDC_ACM_WMAXPACKETSIZE1),  /* wMaxPacketSize */                                                \
+  0x00,                                 /* bInterval: ignore for Bulk transfer */                           \
+                                                                                                            \
+/* Endpoint, EP Bulk IN */                                                                                  \
+  USB_ENDPOINT_DESC_SIZE,               /* bLength */                                                       \
+  USB_ENDPOINT_DESCRIPTOR_TYPE,         /* bDescriptorType */                                               \
+  USB_ENDPOINT_IN(USBD_CDC_2_ACM_EP_BULKIN),/* bEndpointAddress */                                            \
+  USB_ENDPOINT_TYPE_BULK,               /* bmAttributes */                                                  \
+  WBVAL(USBD_CDC_ACM_WMAXPACKETSIZE1),  /* wMaxPacketSize */                                                \
+  0x00,                                 /* bInterval: ignore for Bulk transfer */
+
+
+#define CDC_2_ACM_EP_IF1_HS               /* CDC Endpoints for Interface 1 for High-speed */                  \
+/* Endpoint, EP Bulk OUT */                                                                                 \
+  USB_ENDPOINT_DESC_SIZE,               /* bLength */                                                       \
+  USB_ENDPOINT_DESCRIPTOR_TYPE,         /* bDescriptorType */                                               \
+  USB_ENDPOINT_OUT(USBD_CDC_2_ACM_EP_BULKOUT),/* bEndpointAddress */                                          \
+  USB_ENDPOINT_TYPE_BULK,               /* bmAttributes */                                                  \
+  WBVAL(USBD_CDC_ACM_HS_WMAXPACKETSIZE1),/* wMaxPacketSize */                                               \
+  USBD_CDC_ACM_HS_BINTERVAL1,           /* bInterval */                                                     \
+                                                                                                            \
+/* Endpoint, EP Bulk IN */                                                                                  \
+  USB_ENDPOINT_DESC_SIZE,               /* bLength */                                                       \
+  USB_ENDPOINT_DESCRIPTOR_TYPE,         /* bDescriptorType */                                               \
+  USB_ENDPOINT_IN(USBD_CDC_2_ACM_EP_BULKIN),/* bEndpointAddress */                                            \
+  USB_ENDPOINT_TYPE_BULK,               /* bmAttributes */                                                  \
+  WBVAL(USBD_CDC_ACM_HS_WMAXPACKETSIZE1),/* wMaxPacketSize */                                               \
+  USBD_CDC_ACM_HS_BINTERVAL1,           /* bInterval */
+#endif 
+
+#if (ENABLE_3RD_COM_PORT)
+#define CDC_3_ACM_DESC_IAD(first,num_of_ifs)  /* CDC: Interface Association Descriptor */                     \
+  USB_INTERFACE_ASSOC_DESC_SIZE,        /* bLength */                                                       \
+  USB_INTERFACE_ASSOCIATION_DESCRIPTOR_TYPE,  /* bDescriptorType */                                         \
+ (first),                               /* bFirstInterface */                                               \
+ (num_of_ifs),                          /* bInterfaceCount */                                               \
+  CDC_COMMUNICATION_INTERFACE_CLASS,    /* bFunctionClass    (Communication Class) */                       \
+  CDC_ABSTRACT_CONTROL_MODEL,           /* bFunctionSubclass (Abstract Control Model) */                    \
+  0x01,                                 /* bFunctionProtocol (V.25ter, Common AT commands) */               \
+  USBD_CDC_3_ACM_CIF_STR_NUM,             /* iFunction */                                                     \
+
+#define CDC_3_ACM_DESC_IF0                                                                                        \
+/* Interface, Alternate Setting 0, CDC Class */                                                             \
+  USB_INTERFACE_DESC_SIZE,              /* bLength */                                                       \
+  USB_INTERFACE_DESCRIPTOR_TYPE,        /* bDescriptorType */                                               \
+  USBD_CDC_3_ACM_CIF_NUM,                 /* bInterfaceNumber: Number of Interface */                         \
+  0x00,                                 /* bAlternateSetting: Alternate setting */                          \
+  0x01,                                 /* bNumEndpoints: One endpoint used */                              \
+  CDC_COMMUNICATION_INTERFACE_CLASS,    /* bInterfaceClass: Communication Interface Class */                \
+  CDC_ABSTRACT_CONTROL_MODEL,           /* bInterfaceSubClass: Abstract Control Model */                    \
+  0x01,                                 /* bInterfaceProtocol: no protocol used */                          \
+  USBD_CDC_3_ACM_CIF_STR_NUM,             /* iInterface: */                                                   \
+                                                                                                            \
+/* Header Functional Descriptor */                                                                          \
+  CDC_HEADER_SIZE,                      /* bLength: Endpoint Descriptor size */                             \
+  CDC_CS_INTERFACE,                     /* bDescriptorType: CS_INTERFACE */                                 \
+  CDC_HEADER,                           /* bDescriptorSubtype: Header Func Desc */                          \
+  WBVAL(CDC_V1_10), /* 1.10 */          /* bcdCDC */                                                        \
+/* Call Management Functional Descriptor */                                                                 \
+  CDC_CALL_MANAGEMENT_SIZE,             /* bFunctionLength */                                               \
+  CDC_CS_INTERFACE,                     /* bDescriptorType: CS_INTERFACE */                                 \
+  CDC_CALL_MANAGEMENT,                  /* bDescriptorSubtype: Call Management Func Desc */                 \
+  0x03,                                 /* bmCapabilities: device handles call management */                \
+  0x02,                                 /* bDataInterface: CDC data IF ID */                                \
+/* Abstract Control Management Functional Descriptor */                                                     \
+  CDC_ABSTRACT_CONTROL_MANAGEMENT_SIZE, /* bFunctionLength */                                               \
+  CDC_CS_INTERFACE,                     /* bDescriptorType: CS_INTERFACE */                                 \
+  CDC_ABSTRACT_CONTROL_MANAGEMENT,      /* bDescriptorSubtype: Abstract Control Management desc */          \
+  0x06,                                 /* bmCapabilities: SET_LINE_CODING, GET_LINE_CODING, SET_CONTROL_LINE_STATE supported */ \
+/* Union Functional Descriptor */                                                                           \
+  CDC_UNION_SIZE,                       /* bFunctionLength */                                               \
+  CDC_CS_INTERFACE,                     /* bDescriptorType: CS_INTERFACE */                                 \
+  CDC_UNION,                            /* bDescriptorSubtype: Union func desc */                           \
+  USBD_CDC_3_ACM_CIF_NUM,                 /* bMasterInterface: Communication class interface is master */     \
+  USBD_CDC_3_ACM_DIF_NUM,                 /* bSlaveInterface0: Data class interface is slave 0 */
+
+#define CDC_3_ACM_EP_IF0                  /* CDC Endpoints for Interface 0 for Low-speed/Full-speed */        \
+/* Endpoint, EP Interrupt IN */         /* event notification (optional) */                                 \
+  USB_ENDPOINT_DESC_SIZE,               /* bLength */                                                       \
+  USB_ENDPOINT_DESCRIPTOR_TYPE,         /* bDescriptorType */                                               \
+  USB_ENDPOINT_IN(USBD_CDC_3_ACM_EP_INTIN),/* bEndpointAddress */                                             \
+  USB_ENDPOINT_TYPE_INTERRUPT,          /* bmAttributes */                                                  \
+  WBVAL(USBD_CDC_ACM_WMAXPACKETSIZE),   /* wMaxPacketSize */                                                \
+  USBD_CDC_ACM_BINTERVAL,               /* bInterval */
+
+#define CDC_3_ACM_EP_IF0_HS               /* CDC Endpoints for Interface 0 for High-speed */                  \
+/* Endpoint, EP Interrupt IN */         /* event notification (optional) */                                 \
+  USB_ENDPOINT_DESC_SIZE,               /* bLength */                                                       \
+  USB_ENDPOINT_DESCRIPTOR_TYPE,         /* bDescriptorType */                                               \
+  USB_ENDPOINT_IN(USBD_CDC_3_ACM_EP_INTIN),/* bEndpointAddress */                                             \
+  USB_ENDPOINT_TYPE_INTERRUPT,          /* bmAttributes */                                                  \
+  WBVAL(USBD_CDC_ACM_HS_WMAXPACKETSIZE),/* wMaxPacketSize */                                                \
+  USBD_CDC_ACM_HS_BINTERVAL,            /* bInterval */
+
+#define CDC_3_ACM_DESC_IF1                                                                                        \
+/* Interface, Alternate Setting 0, Data class interface descriptor*/                                        \
+  USB_INTERFACE_DESC_SIZE,              /* bLength */                                                       \
+  USB_INTERFACE_DESCRIPTOR_TYPE,        /* bDescriptorType */                                               \
+  USBD_CDC_3_ACM_DIF_NUM,                 /* bInterfaceNumber: Number of Interface */                         \
+  0x00,                                 /* bAlternateSetting: no alternate setting */                       \
+  0x02,                                 /* bNumEndpoints: two endpoints used */                             \
+  CDC_DATA_INTERFACE_CLASS,             /* bInterfaceClass: Data Interface Class */                         \
+  0x00,                                 /* bInterfaceSubClass: no subclass available */                     \
+  0x00,                                 /* bInterfaceProtocol: no protocol used */                          \
+  USBD_CDC_3_ACM_DIF_STR_NUM,             /* iInterface */
+
+#define CDC_3_ACM_EP_IF1                  /* CDC Endpoints for Interface 1 for Low-speed/Full-speed */        \
+/* Endpoint, EP Bulk OUT */                                                                                 \
+  USB_ENDPOINT_DESC_SIZE,               /* bLength */                                                       \
+  USB_ENDPOINT_DESCRIPTOR_TYPE,         /* bDescriptorType */                                               \
+  USB_ENDPOINT_OUT(USBD_CDC_3_ACM_EP_BULKOUT),/* bEndpointAddress */                                          \
+  USB_ENDPOINT_TYPE_BULK,               /* bmAttributes */                                                  \
+  WBVAL(USBD_CDC_ACM_WMAXPACKETSIZE1),  /* wMaxPacketSize */                                                \
+  0x00,                                 /* bInterval: ignore for Bulk transfer */                           \
+                                                                                                            \
+/* Endpoint, EP Bulk IN */                                                                                  \
+  USB_ENDPOINT_DESC_SIZE,               /* bLength */                                                       \
+  USB_ENDPOINT_DESCRIPTOR_TYPE,         /* bDescriptorType */                                               \
+  USB_ENDPOINT_IN(USBD_CDC_3_ACM_EP_BULKIN),/* bEndpointAddress */                                            \
+  USB_ENDPOINT_TYPE_BULK,               /* bmAttributes */                                                  \
+  WBVAL(USBD_CDC_ACM_WMAXPACKETSIZE1),  /* wMaxPacketSize */                                                \
+  0x00,                                 /* bInterval: ignore for Bulk transfer */
+
+
+#define CDC_3_ACM_EP_IF1_HS               /* CDC Endpoints for Interface 1 for High-speed */                  \
+/* Endpoint, EP Bulk OUT */                                                                                 \
+  USB_ENDPOINT_DESC_SIZE,               /* bLength */                                                       \
+  USB_ENDPOINT_DESCRIPTOR_TYPE,         /* bDescriptorType */                                               \
+  USB_ENDPOINT_OUT(USBD_CDC_3_ACM_EP_BULKOUT),/* bEndpointAddress */                                          \
+  USB_ENDPOINT_TYPE_BULK,               /* bmAttributes */                                                  \
+  WBVAL(USBD_CDC_ACM_HS_WMAXPACKETSIZE1),/* wMaxPacketSize */                                               \
+  USBD_CDC_ACM_HS_BINTERVAL1,           /* bInterval */                                                     \
+                                                                                                            \
+/* Endpoint, EP Bulk IN */                                                                                  \
+  USB_ENDPOINT_DESC_SIZE,               /* bLength */                                                       \
+  USB_ENDPOINT_DESCRIPTOR_TYPE,         /* bDescriptorType */                                               \
+  USB_ENDPOINT_IN(USBD_CDC_3_ACM_EP_BULKIN),/* bEndpointAddress */                                            \
+  USB_ENDPOINT_TYPE_BULK,               /* bmAttributes */                                                  \
+  WBVAL(USBD_CDC_ACM_HS_WMAXPACKETSIZE1),/* wMaxPacketSize */                                               \
+  USBD_CDC_ACM_HS_BINTERVAL1,           /* bInterval */
+#endif
+
 /* USB Device Configuration Descriptor (for Full Speed) */
 /*   All Descriptors (Configuration, Interface, Endpoint, Class, Vendor) */
 __weak \
@@ -2054,6 +2598,25 @@ const U8 USBD_ConfigDescriptor[] = {
     CDC_ACM_EP_IF0
     CDC_ACM_DESC_IF1
     CDC_ACM_EP_IF1
+#endif
+
+#if (ENABLE_2ND_COM_PORT)
+#if (USBD_MULTI_IF)
+		CDC_2_ACM_DESC_IAD(USBD_CDC_2_ACM_CIF_NUM, 2)
+#endif
+    CDC_2_ACM_DESC_IF0
+    CDC_2_ACM_EP_IF0
+    CDC_2_ACM_DESC_IF1
+    CDC_2_ACM_EP_IF1
+#endif 
+#if (ENABLE_3RD_COM_PORT)
+#if (USBD_MULTI_IF)
+		CDC_3_ACM_DESC_IAD(USBD_CDC_3_ACM_CIF_NUM, 2)
+#endif
+    CDC_3_ACM_DESC_IF0
+    CDC_3_ACM_EP_IF0
+    CDC_3_ACM_DESC_IF1
+    CDC_3_ACM_EP_IF1
 #endif
 
     /* Terminator */                                                                                            \
@@ -2116,6 +2679,25 @@ const U8 USBD_ConfigDescriptor_HS[] = {
     CDC_ACM_EP_IF1_HS
 #endif
 
+#if (ENABLE_2ND_COM_PORT)
+#if (USBD_MULTI_IF)
+		CDC_2_ACM_DESC_IAD(USBD_CDC_2_ACM_CIF_NUM, 2)
+#endif
+    CDC_2_ACM_DESC_IF0
+    CDC_2_ACM_EP_IF0_HS
+    CDC_2_ACM_DESC_IF1
+    CDC_2_ACM_EP_IF1_HS
+#endif 
+#if (ENABLE_3RD_COM_PORT)
+#if (USBD_MULTI_IF)
+		CDC_3_ACM_DESC_IAD(USBD_CDC_3_ACM_CIF_NUM, 2)
+#endif
+    CDC_3_ACM_DESC_IF0
+    CDC_3_ACM_EP_IF0_HS
+    CDC_3_ACM_DESC_IF1
+    CDC_3_ACM_EP_IF1_HS
+#endif
+
     /* Terminator */                                                                                            \
     0                                     /* bLength */                                                       \
 };
@@ -2151,6 +2733,25 @@ const U8 USBD_OtherSpeedConfigDescriptor[] = {
     CDC_ACM_EP_IF0_HS
     CDC_ACM_DESC_IF1
     CDC_ACM_EP_IF1_HS
+#endif
+
+#if (ENABLE_2ND_COM_PORT)
+#if (USBD_MULTI_IF)
+		CDC_2_ACM_DESC_IAD(USBD_CDC_2_ACM_CIF_NUM, 2)
+#endif
+    CDC_2_ACM_DESC_IF0
+    CDC_2_ACM_EP_IF0_HS
+    CDC_2_ACM_DESC_IF1
+    CDC_2_ACM_EP_IF1_HS
+#endif 
+#if (ENABLE_3RD_COM_PORT)
+#if (USBD_MULTI_IF)
+		CDC_3_ACM_DESC_IAD(USBD_CDC_3_ACM_CIF_NUM, 2)
+#endif
+    CDC_3_ACM_DESC_IF0
+    CDC_3_ACM_EP_IF0_HS
+    CDC_3_ACM_DESC_IF1
+    CDC_3_ACM_EP_IF1_HS
 #endif
 
 #if (USBD_HID_ENABLE)
@@ -2204,6 +2805,25 @@ const U8 USBD_OtherSpeedConfigDescriptor_HS[] = {
     CDC_ACM_EP_IF1
 #endif
 
+#if (ENABLE_2ND_COM_PORT)
+#if (USBD_MULTI_IF)
+		CDC_2_ACM_DESC_IAD(USBD_CDC_2_ACM_CIF_NUM, 2)
+#endif
+    CDC_2_ACM_DESC_IF0
+    CDC_2_ACM_EP_IF0
+    CDC_2_ACM_DESC_IF1
+    CDC_2_ACM_EP_IF1
+#endif 
+#if (ENABLE_3RD_COM_PORT)
+#if (USBD_MULTI_IF)
+		CDC_3_ACM_DESC_IAD(USBD_CDC_3_ACM_CIF_NUM, 2)
+#endif
+    CDC_3_ACM_DESC_IF0
+    CDC_3_ACM_EP_IF0
+    CDC_3_ACM_DESC_IF1
+    CDC_3_ACM_EP_IF1
+#endif
+
 #if (USBD_HID_ENABLE)
     HID_DESC
 #if (USBD_HID_EP_INTOUT != 0)
@@ -2254,6 +2874,14 @@ const struct {
 #if (USBD_CDC_ACM_ENABLE)
     USBD_STR_DEF(CDC_ACM_CIF_STRDESC);
     USBD_STR_DEF(CDC_ACM_DIF_STRDESC);
+#if ENABLE_2ND_COM_PORT
+    USBD_STR_DEF(CDC_2_ACM_CIF_STRDESC);
+    USBD_STR_DEF(CDC_2_ACM_DIF_STRDESC);
+#endif 
+#if ENABLE_3RD_COM_PORT
+    USBD_STR_DEF(CDC_3_ACM_CIF_STRDESC);
+    USBD_STR_DEF(CDC_3_ACM_DIF_STRDESC);
+#endif		
 #endif
 #if (USBD_HID_ENABLE)
     USBD_STR_DEF(HID_STRDESC);
@@ -2277,6 +2905,14 @@ const struct {
 #if (USBD_CDC_ACM_ENABLE)
     USBD_STR_VAL(CDC_ACM_CIF_STRDESC),
     USBD_STR_VAL(CDC_ACM_DIF_STRDESC),
+#if ENABLE_2ND_COM_PORT
+    USBD_STR_VAL(CDC_2_ACM_CIF_STRDESC),
+    USBD_STR_VAL(CDC_2_ACM_DIF_STRDESC),
+#endif 
+#if ENABLE_3RD_COM_PORT
+    USBD_STR_VAL(CDC_3_ACM_CIF_STRDESC),
+    USBD_STR_VAL(CDC_3_ACM_DIF_STRDESC),
+#endif		
 #endif
 #if (USBD_HID_ENABLE)
     USBD_STR_VAL(HID_STRDESC),

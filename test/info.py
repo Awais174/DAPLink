@@ -58,6 +58,7 @@ PROJECT_RELEASE_INFO = {
     ("lpc11u35_archlink_if",                        False,      0x0000,     "bin"       ),
     ("lpc11u35_tiny_if",                            False,      0x0000,     "bin"       ),
     ("lpc11u35_c027_if",                            False,      0x0000,     "bin"       ),
+    ("stm32f103xb_c030_if",                         False,      0x0000,     "bin"       ),
     ("kl26z_nina_b1_if",                            False,      0x8000,     "bin"       ),
     ("lpc11u35_lpc4088dm_if",                       False,      0x0000,     "bin"       ),
     ("lpc11u35_lpc4088qsb_if",                      False,      0x0000,     "bin"       ),
@@ -97,7 +98,14 @@ SUPPORTED_CONFIGURATIONS = [
     (   0x218,      'k20dx_frdmkl82z_if',                       'k20dx_bl',         None                                    ), # TODO - set target to 'FRDM-KL82Z' when mbed-os supports this
     (   0x311,      'k20dx_frdmk66f_if',                        'k20dx_bl',         None                                    ), # TODO - set target to 'FRDM-K66F' when mbed-os supports this
     (   0x350,      'k20dx_xdot_l151_if',                       'k20dx_bl',         None                                    ), # TODO - set target to 'MTS-xDot-L151CC' when mbed-os supports this
+    (   0x700,      'stm32f103xb_stm32f103rb_if',               'stm32f103xb_bl',   'ST-Nucleo-F103RB'                      ),
+    (   0x720,      'stm32f103xb_stm32f072rb_if',               'stm32f103xb_bl',   'ST-Nucleo-F072RB'                      ),
+    (   0x735,      'stm32f103xb_stm32f334r8_if',               'stm32f103xb_bl',   'ST-Nucleo-F334R8'                      ),
+    (   0x740,      'stm32f103xb_stm32f411re_if',               'stm32f103xb_bl',   'ST-Nucleo-F411RE'                      ),
+    (   0x765,      'stm32f103xb_stm32l476rg_if',               'stm32f103xb_bl',   'ST-Nucleo-L476RG'                      ),
+    (   0x816,      'stm32f103xb_stm32f746zg_if',               'stm32f103xb_bl',   'ST-Nucleo-F746ZG'                      ),
     (   0x824,      'lpc11u35_lpc824xpresso_if',                None,               'LPCXpresso824-MAX'                     ),
+    (   0x835,      'stm32f103xb_stm32f207zg_if',               'stm32f103xb_bl',   'ST-Nucleo-F207ZG'                      ),
     (   0x1017,     'lpc11u35_hrm1017_if',                      None,               'mbed-HRM1017'                          ),
     (   0x1018,     'lpc11u35_ssci824_if',                      None,               'Switch-Science-mbed-LPC824'            ),
     (   0x1019,     'lpc11u35_sscity_if',                       None,               'Switch-Science-mbed-TY51822r3'         ),
@@ -113,6 +121,7 @@ SUPPORTED_CONFIGURATIONS = [
     (   0x1114,     'lpc11u35_ssci1114_if',                     None,               'LPC1114FN28'                           ),
     (   0x1120,     'sam3u2c_mkit_dk_dongle_nrf5x_if',          'sam3u2c_bl',       'Nordic-nRF51-Dongle'                   ),
     (   0x1234,     'lpc11u35_c027_if',                         None,               'u-blox-C027'                           ),
+    (   0xC031,     'stm32f103xb_c030_if',                      'stm32f103xb_bl',   'ublox-C030-N211'                       ),
     (   0x1200,     'sam3u2c_ncs36510rf_if',                   'sam3u2c_bl',        'ncs36510'                              ),
     (   0x1238,     'kl26z_nina_b1_if',                        'kl26z_bl',          None                                    ), # TODO - set target to 'UBLOX_EVA_NINA' when mbed-os supports this
     (   0x5050,     'lpc11u35_arm_watch_stm32f411_if',          None,               None                                    ),
@@ -142,6 +151,7 @@ HIC_STRING_TO_ID = {
     'kl26z': 0x97969901,
     'lpc11u35': 0x97969902,
     'sam3u2c': 0x97969903,
+    'stm32f103xb': 0x97969904,
 }
 
 BOARD_ID_LOCKED_WHEN_ERASED = set([

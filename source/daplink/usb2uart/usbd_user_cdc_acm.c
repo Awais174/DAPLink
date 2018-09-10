@@ -25,6 +25,10 @@
 #include "target_reset.h"
 #include "uart.h"
 
+#ifdef ENABLE_2ND_COM_PORT
+extern void cdc_process_event_2_pwr_inst();
+#endif 
+		
 UART_Configuration UART_Config;
 
 /** @brief  Vitual COM Port initialization
@@ -165,7 +169,16 @@ void cdc_process_event()
             main_blink_cdc_led(MAIN_LED_OFF);
         }
     }
-
+		
+		#ifdef ENABLE_2ND_COM_PORT
+		#if 0 //awar: for testing only;  	 
+	  //see if uart data can be send over VCOM2
+				if (USBD_CDC_2_ACM_DataSend(data , len_data)) {    
+						main_blink_cdc_led(MAIN_LED_OFF);
+        }					
+		#endif 
+		#endif 
+		
     len_data = uart_write_free();
 
     if (len_data > sizeof(data)) {
@@ -181,7 +194,12 @@ void cdc_process_event()
             main_blink_cdc_led(MAIN_LED_OFF);
         }
     }
- 
+		
+		#ifdef ENABLE_2ND_COM_PORT
+		//to process 2ND VCOM for power instrumentation.	
+		cdc_process_event_2_pwr_inst();
+		#endif 
+				
     // Always process events
     main_cdc_send_event();
 }

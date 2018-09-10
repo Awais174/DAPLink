@@ -32,6 +32,11 @@ extern "C" {
 #define HIGHEST_PRIORITY            (254)   /* Priority 255 is reserved by RTX */
 
 #define MAIN_TASK_PRIORITY          (10)
+
+#ifdef ENABLE_2ND_COM_PORT
+#define I2C_ADC_TASK_PRIORITY       (1)
+#endif 	
+		
 #define TIMER_TASK_PRIORITY         (11)
 #define DAP_TASK_PRIORITY           (15)
 #define MSC_TASK_PRIORITY           (5)
@@ -43,6 +48,10 @@ extern "C" {
 #define TIMER_TASK_30_STACK (136)
 #define DAP_TASK_STACK      (272)
 #define MAIN_TASK_STACK     (800)
+
+#ifdef ENABLE_2ND_COM_PORT
+#define I2C_TASK_STACK   (312) //probably can be further reduced since we are not receiving any data from VCOM2 (BULKOUT: Host->DEV) 
+#endif
 
 #ifdef __cplusplus
 }

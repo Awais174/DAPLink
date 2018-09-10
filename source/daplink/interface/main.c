@@ -38,6 +38,7 @@
 #include "daplink.h"
 #include "util.h"
 #include "DAP.h"
+#include "sdk.h"
 
 // Event flags for main task
 // Timers events
@@ -314,10 +315,10 @@ __task void main_task(void)
                 case USB_CHECK_CONNECTED:
                     if (usbd_configured()) {
                         if (!thread_started) {
-                            os_tsk_create_user(hid_process, DAP_TASK_PRIORITY, (void *)stk_dap_task, DAP_TASK_STACK);
+                            os_tsk_create_user(hid_process, DAP_TASK_PRIORITY, (void *)stk_dap_task, DAP_TASK_STACK);	
                             thread_started = 1;
                         }
-
+												
                         usb_state = USB_CONNECTED;
                     }
 
@@ -360,8 +361,8 @@ __task void main_task(void)
 
             // DAP LED
             if (hid_led_usb_activity && ((hid_led_state == MAIN_LED_FLASH) || (hid_led_state == MAIN_LED_FLASH_PERMANENT))) {
-
-                // Toggle LED value
+             
+   				// Toggle LED value
                 hid_led_value = GPIO_LED_ON == hid_led_value ? GPIO_LED_OFF : GPIO_LED_ON;
 
                 // If in flash mode stop after one cycle
@@ -413,5 +414,7 @@ int main(void)
 #if DAPLINK_ROM_BL_SIZE > 0
     SCB->VTOR = SCB_VTOR_TBLOFF_Msk & DAPLINK_ROM_IF_START;
 #endif
+    // initialize vendor sdk
+    sdk_init();
     os_sys_init_user(main_task, MAIN_TASK_PRIORITY, stk_main_task, MAIN_TASK_STACK);
 }

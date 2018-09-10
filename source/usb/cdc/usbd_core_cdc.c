@@ -34,8 +34,17 @@
 
 __weak BOOL USBD_EndPoint0_Setup_CDC_ReqToIF(void)
 {
-    if ((USBD_SetupPacket.wIndexL == usbd_cdc_acm_cif_num)  || /* IF number correct? */
-            (USBD_SetupPacket.wIndexL == usbd_cdc_acm_dif_num)) {
+    if ((USBD_SetupPacket.wIndexL == usbd_cdc_acm_cif_num)    || /* IF number correct? */
+        (USBD_SetupPacket.wIndexL == usbd_cdc_acm_dif_num)    
+#if ENABLE_2ND_COM_PORT    
+		    || (USBD_SetupPacket.wIndexL == usbd_cdc_2_acm_cif_num)  || 
+        (USBD_SetupPacket.wIndexL == usbd_cdc_2_acm_dif_num)  
+#endif 
+#if ENABLE_3RD_COM_PORT    
+		    || (USBD_SetupPacket.wIndexL == usbd_cdc_3_acm_cif_num)  || 
+        (USBD_SetupPacket.wIndexL == usbd_cdc_3_acm_dif_num)
+#endif 
+		    )  {  
         switch (USBD_SetupPacket.bRequest) {
             case CDC_SEND_ENCAPSULATED_COMMAND:
                 USBD_EP0Data.pData = USBD_EP0Buf;                    /* data to be received, see USBD_EVT_OUT */
@@ -114,9 +123,17 @@ __weak BOOL USBD_EndPoint0_Setup_CDC_ReqToIF(void)
 
 __weak BOOL USBD_EndPoint0_Out_CDC_ReqToIF(void)
 {
-    if ((USBD_SetupPacket.wIndexL == usbd_cdc_acm_cif_num) || /* IF number correct? */
-            (USBD_SetupPacket.wIndexL == usbd_cdc_acm_dif_num)) {
-        switch (USBD_SetupPacket.bRequest) {
+		 if ((USBD_SetupPacket.wIndexL == usbd_cdc_acm_cif_num)    || /* IF number correct? */
+        (USBD_SetupPacket.wIndexL == usbd_cdc_acm_dif_num)    
+#if ENABLE_2ND_COM_PORT    
+		    || (USBD_SetupPacket.wIndexL == usbd_cdc_2_acm_cif_num)  || 
+        (USBD_SetupPacket.wIndexL == usbd_cdc_2_acm_dif_num)  
+#endif 
+#if ENABLE_3RD_COM_PORT    
+		    || (USBD_SetupPacket.wIndexL == usbd_cdc_3_acm_cif_num)  || 
+        (USBD_SetupPacket.wIndexL == usbd_cdc_3_acm_dif_num)
+#endif 
+		    )  {     switch (USBD_SetupPacket.bRequest) {
             case CDC_SEND_ENCAPSULATED_COMMAND:
                 if (USBD_CDC_ACM_SendEncapsulatedCommand()) {
                     USBD_StatusInStage();                        /* send Acknowledge */

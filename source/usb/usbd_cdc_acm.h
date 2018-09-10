@@ -34,6 +34,22 @@ extern void USBD_CDC_ACM_EP_BULKIN_Event(U32 event);
 extern void USBD_CDC_ACM_EP_BULKOUT_Event(U32 event);
 extern void USBD_CDC_ACM_EP_BULK_Event(U32 event);
 
+#ifdef ENABLE_2ND_COM_PORT
+extern void USBD_CDC_2_ACM_SOF_Event(void);
+extern void USBD_CDC_2_ACM_EP_INTIN_Event(U32 event);
+extern void USBD_CDC_2_ACM_EP_BULKIN_Event(uint32_t event);
+extern void USBD_CDC_2_ACM_EP_BULKOUT_Event(U32 event);
+extern void USBD_CDC_2_ACM_EP_BULK_Event(U32 event);
+#endif
+
+#ifdef ENABLE_3RD_COM_PORT
+extern void USBD_CDC_3_ACM_SOF_Event(void);
+extern void USBD_CDC_3_ACM_EP_INTIN_Event(U32 event);
+extern void USBD_CDC_3_ACM_EP_BULKIN_Event(uint32_t event);
+extern void USBD_CDC_3_ACM_EP_BULKOUT_Event(U32 event);
+extern void USBD_CDC_3_ACM_EP_BULK_Event(U32 event);
+#endif
+
 extern __task void USBD_RTX_CDC_ACM_EP_INTIN_Event(void);
 extern __task void USBD_RTX_CDC_ACM_EP_BULKIN_Event(void);
 extern __task void USBD_RTX_CDC_ACM_EP_BULKOUT_Event(void);

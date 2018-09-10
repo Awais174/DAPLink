@@ -1,0 +1,10 @@
+common:
+    macros: 
+    - ENABLE_2ND_COM_PORT
+    - ENABLE_PWR_INST
+    sources:
+        board:
+            - source/board/c030.c
+        target:
+            - source/target/st/stm32f437vg/target.c
+            - source/target/st/target_reset.c
